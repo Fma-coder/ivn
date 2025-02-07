@@ -169,9 +169,11 @@
             document.getElementById("result").classList.replace("show", "hidden");
             document.getElementById("inp").value = "";
         }
-        document.getElementById("inp").addEventListener("keydown", (e) => {
-            if (!(Array.from("0123456789")).includes(e.key)) {
-                event.preventDefault();
+        document.getElementById("inp").addEventListener("input", (e) => {
+            console.log(e)
+            if (!(Array.from("0123456789")).includes(e.data)) {
+                let k = document.getElementById("inp");
+                k.value = (k.value).slice(0,k.value.length-1)
             }
         })
     </script>
