@@ -1,0 +1,180 @@
+<html>
+
+<head>
+    <title>IVN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: Javanese-Bold;
+            src: url(Open_Sans/static/OpenSans-Bold.ttf);
+        }
+
+        @font-face {
+            font-family: Javanese;
+            src: url(Open_Sans/static/OpenSans-Medium.ttf);
+        }
+
+        body {
+            background-color: hsl(47, 88%, 63%);
+        }
+@keyframes bbox {
+    from {
+        box-shadow: 5px 5px;
+    }
+    to {
+        box-shadow: 0 0;
+    }
+}
+        .container {
+            width: 300px;
+            border: 1px solid black;
+            background-color: rgb(255, 255, 255);
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            box-shadow: 5px 5px;
+            padding: 10px;
+        }
+        .bx {
+            width: 300px;
+            border: 1px solid black;
+            background-color: rgb(255, 255, 255);
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            box-shadow: 0 0;
+            padding: 10px;
+            animation: bbox 1s;
+        }
+
+        .header {
+            font-family: Javanese-Bold;
+            font-size: 30px;
+            margin: 0;
+            padding-bottom: 10px;
+            padding-top: 5px;
+        }
+        .header image{
+            margin: 0;
+        }
+        td{
+            vertical-align:middle;
+        }
+        input[type=text] {
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+            font-family: Javanese;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-top: 3px;
+        }
+
+        input[type=text]:focus {
+            outline: 0;
+        }
+
+        .iseven {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+            background-color: hsl(47, 88%, 63%);
+            color: black;
+            font-family: Javanese-Bold;
+            border: 1px solid black;
+            font-size: 20px;
+        }
+
+        .hidden {
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            display: none;
+            z-index: 9999;
+        }
+
+        @keyframes showed {
+            from {
+                height: 0;
+                display: none;
+            }
+
+            to {
+                height: calc(100% - 20px);
+                display: block;
+            }
+        }
+
+        .show {
+            text-align: center;
+            color: hsl(47, 88%, 63%);
+            font-family: Javanese-Bold;
+            padding: 10px;;
+            background-color: black;
+            overflow: hidden;
+            position: absolute;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            display: block;
+            animation: showed 1s;
+        }
+        .alttext{
+            color:hsl(0, 0%, 42%);
+            font-family: Javanese;
+            font-size:13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td><img src="Downloads/IVN-removebg-preview.png" style="width:30px;"/></td>
+                <td><p class="header">IVN</p></td>
+            </tr>
+        </table>
+        
+        <span class="alttext">Enter the number below:</span>
+        <input id="inp" type="text" />
+        <button class="iseven" onclick="iseven()">IVN!</button>
+        <div id="result" class="hidden">
+            <h1 id="res">_</h1>
+            <button class="iseven" onclick="retur()">IVN again!</button>
+        </div>
+    </div>
+
+    <script>
+        function iseven(){
+            let val = document.getElementById("inp").value
+            if (val!=""){
+            val = parseInt(val[(val).length-1]);
+            document.getElementById("res").innerText = ["EVEN!", "ODD!"][val%2];
+            document.getElementsByClassName("container")[0].classList.add("bx");
+            document.getElementById("result").classList.replace("hidden", "show");
+            }
+        }
+        function retur(){
+            document.getElementsByClassName("container")[0].classList.remove("bx");
+            document.getElementById("result").classList.replace("show", "hidden");
+            document.getElementById("inp").value = "";
+        }
+        document.getElementById("inp").addEventListener("keydown", (e) => {
+            if (!(Array.from("0123456789")).includes(e.key)) {
+                event.preventDefault();
+            }
+        })
+    </script>
+</body>
+
+</html>
